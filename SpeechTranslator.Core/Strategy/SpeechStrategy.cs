@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SpeechTranslator.Core.Strategy
 {
-    class SpeechStrategy : IStrategy
+    public class SpeechStrategy : IStrategy
     {
         private readonly string key;
         private readonly string azureServer;
@@ -22,65 +22,38 @@ namespace SpeechTranslator.Core.Strategy
             this.azureServer = _azureServer;
         }
 
-        public async Task<string> Recognize(string _language)
-        {
-            var factory = SpeechFactory.FromSubscription(this.key, this.azureServer);
-
-            using (var recognizer = factory.CreateSpeechRecognizer(_language))
-            {
-                // Performs recognition.
-                // RecognizeAsync() returns when the first utterance has been recognized, so it is suitable 
-                // only for single shot recognition like command or query. For long-running recognition, use
-                // StartContinuousRecognitionAsync() instead.
-                var result = await recognizer.RecognizeAsync();
-
-                // Checks result.
-                if (result.RecognitionStatus != RecognitionStatus.Recognized)
-                {
-                    if (result.RecognitionStatus == RecognitionStatus.Canceled)
-                        return "There was an error, reason:" + result.RecognitionFailureReason;
-                    return "No speech could be recognized.\n";
-                }
-                else
-                    return result.Text;
-            }
-        }
-
-        public async Task<string> TranslateToText(string _fromLanguage, List<string> _toLanguage)
+        public async Task<List<string>> TranslateToText(string _fromLanguage, List<string> _toLanguages)
         {
             // Creates an instance of a speech factory with specified
             // subscription key and service region. Replace with your own subscription key
             // and service region (e.g., "westus").
             var factory = SpeechFactory.FromSubscription(this.key, this.azureServer);
+            List<string> textAndTranslations = new List<string>();
 
-            using (TranslationRecognizer trecognizer = factory.CreateTranslationRecognizer(_fromLanguage, _toLanguage))
+            using (TranslationRecognizer trecognizer = factory.CreateTranslationRecognizer(_fromLanguage, _toLanguages))
             {
                 var result = await trecognizer.RecognizeAsync();
 
                 if (result.RecognitionStatus != RecognitionStatus.Recognized)
                 {
                     if (result.RecognitionStatus == RecognitionStatus.Canceled)
-                        return "There was an error, reason:" + result.RecognitionFailureReason;
-                    return "No speech could be recognized.\n";
+                        textAndTranslations.Add("There was an error, reason:" + result.RecognitionFailureReason);
+                    else
+                        textAndTranslations.Add("No speech could be recognized.\n");
                 }
                 else
                 {
                     if (result.TranslationStatus == TranslationStatus.Success)
                     {
-                        string tresult = "";
+                        textAndTranslations.Add(result.Text);
                         foreach (var element in result.Translations)
-                            tresult += element.Value;
-                        return tresult;
+                            textAndTranslations.Add(element.Key + element.Value);
                     }
-                    return "Translation error";
                 }
             }
+            return textAndTranslations;
         }
 
-
-        public async void TranslateToSpeech(string _fromLanguage, List<string> _toLanguage)
-        {
-
-        }
+        public void TranslateToSpeech(string _fromLanguage, List<string> _toLanguage) { }
     }
 }

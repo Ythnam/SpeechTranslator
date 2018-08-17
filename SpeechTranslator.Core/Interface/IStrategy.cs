@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SpeechTranslator.Core.Interface
 {
-    interface IStrategy
+    public interface IStrategy
     {
-        Task<string> Recognize(string _language);
-        Task<string> TranslateToText(string _fromLanguage, List<string> _toLanguage);
-        void TranslateToSpeech(string _fromLanguage, List<string> _toLanguage);
+        Task<List<string>> TranslateToText(string _fromLanguage, List<string> _toLanguages);
+        void TranslateToSpeech(string _fromLanguage, List<string> _toLanguages);
     }
 }

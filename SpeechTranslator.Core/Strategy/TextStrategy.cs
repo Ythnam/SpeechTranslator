@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpeechTranslator.Core.Strategy
 {
-    class TextStrategy
+    public class TextStrategy
     {
     }
 }

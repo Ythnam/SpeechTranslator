@@ -1,0 +1,14 @@
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\bin\Debug\Microsoft.CognitiveServices.Speech.core.dll
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\bin\Debug\Microsoft.CognitiveServices.Speech.csharp.bindings.dll
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\bin\Debug\Test.exe.config
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\bin\Debug\Test.exe
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\bin\Debug\Test.pdb
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\bin\Debug\SpeechTranslator.Core.dll
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\bin\Debug\Microsoft.CognitiveServices.Speech.csharp.dll
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\bin\Debug\SpeechTranslator.Core.pdb
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\bin\Debug\Microsoft.CognitiveServices.Speech.csharp.xml
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\obj\Debug\Test.csproj.CopyComplete
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\obj\Debug\Test.exe
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\Test\obj\Debug\Test.pdb
