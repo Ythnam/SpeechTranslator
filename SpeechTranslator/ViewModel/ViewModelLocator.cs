@@ -43,6 +43,7 @@ namespace SpeechTranslator.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<TranslationViewModel>();
         }
 
         public MainViewModel Main
@@ -52,7 +53,15 @@ namespace SpeechTranslator.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
-        
+
+        public TranslationViewModel TranslationViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<TranslationViewModel>();
+            }
+        }
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

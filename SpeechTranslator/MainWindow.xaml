@@ -6,10 +6,21 @@
         xmlns:local="clr-namespace:SpeechTranslator"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-                     
+        
+        BorderBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="3" 
+        xmlns:Vm="clr-namespace:SpeechTranslator.ViewModel"
+        xmlns:Views="clr-namespace:SpeechTranslator.Views"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type Vm:TranslationViewModel}">
+            <Views:TranslationView/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -30,5 +41,9 @@
                 Width="100"
                 Content="Start"
                 Command="{Binding OnStartEventCommand}"/>
+        
+        <Views:TranslationView  Grid.ColumnSpan="1" Grid.Row="4"
+                               Padding="0,25,0,0"
+                               Visibility="Visible"/>
     </Grid>
 </Controls:MetroWindow>

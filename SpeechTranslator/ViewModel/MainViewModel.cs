@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using SpeechTranslator.Core;
+using SpeechTranslator.Core.Model;
 using SpeechTranslator.Core.Strategy;
 using System;
 using System.Collections.Generic;
@@ -63,11 +64,9 @@ namespace SpeechTranslator.ViewModel
         private async Task OnStartEvent()
         {
             Context.Strategy = new SpeechStrategy(ConfigurationManager.AppSettings["KEY"], ConfigurationManager.AppSettings["AzureServer"]);
-            List<string> l = await Context.TranslateToText("fr-FR", new List<string>() { "en", "it", "de" });
-            foreach(string s in l)
-            {
-                Console.WriteLine(s);
-            }
+            List<LanguageModel> translations = await Context.TranslateToText("fr-FR", new List<string>() { "en", "it", "de" });
+
+            MessengerInstance.Send<List<LanguageModel>>(translations, "Translations");
         }
     }
 }

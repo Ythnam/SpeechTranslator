@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpeechTranslator.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace SpeechTranslator.Core.Interface
 {
     public interface IStrategy
     {
-        Task<List<string>> TranslateToText(string _fromLanguage, List<string> _toLanguages);
+        Task<List<LanguageModel>> TranslateToText(string _fromLanguage, List<string> _toLanguages);
         void TranslateToSpeech(string _fromLanguage, List<string> _toLanguages);
     }
 }

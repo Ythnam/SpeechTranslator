@@ -1,6 +1,7 @@
 ﻿using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Translation;
 using SpeechTranslator.Core.Interface;
+using SpeechTranslator.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,13 @@ namespace SpeechTranslator.Core.Strategy
             this.azureServer = _azureServer;
         }
 
-        public async Task<List<string>> TranslateToText(string _fromLanguage, List<string> _toLanguages)
+        public async Task<List<LanguageModel>> TranslateToText(string _fromLanguage, List<string> _toLanguages)
         {
             // Creates an instance of a speech factory with specified
             // subscription key and service region. Replace with your own subscription key
             // and service region (e.g., "westus").
             var factory = SpeechFactory.FromSubscription(this.key, this.azureServer);
-            List<string> textAndTranslations = new List<string>();
+            List<LanguageModel> textAndTranslations = new List<LanguageModel>();
 
             using (TranslationRecognizer trecognizer = factory.CreateTranslationRecognizer(_fromLanguage, _toLanguages))
             {
@@ -37,17 +38,17 @@ namespace SpeechTranslator.Core.Strategy
                 if (result.RecognitionStatus != RecognitionStatus.Recognized)
                 {
                     if (result.RecognitionStatus == RecognitionStatus.Canceled)
-                        textAndTranslations.Add("There was an error, reason:" + result.RecognitionFailureReason);
+                        textAndTranslations.Add(new LanguageModel("Error", "There was an error, reason:" + result.RecognitionFailureReason));
                     else
-                        textAndTranslations.Add("No speech could be recognized.\n");
+                        textAndTranslations.Add(new LanguageModel("Error", "No speech could be recognized.\n"));
                 }
                 else
                 {
                     if (result.TranslationStatus == TranslationStatus.Success)
                     {
-                        textAndTranslations.Add(result.Text);
+                        textAndTranslations.Add(new LanguageModel(_fromLanguage, result.Text));
                         foreach (var element in result.Translations)
-                            textAndTranslations.Add(element.Key + element.Value);
+                            textAndTranslations.Add(new LanguageModel(element.Key, element.Value));
                     }
                 }
             }

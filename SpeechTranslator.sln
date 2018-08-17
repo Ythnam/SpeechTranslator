@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechTranslator", "SpeechT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeechTranslator.Core", "SpeechTranslator.Core\SpeechTranslator.Core.csproj", "{06DB18DA-BCEE-4AA4-B38B-0367B7D52C5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{589BF24C-F2CE-44A4-9F1F-384BA19E3302}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,14 +31,6 @@ Global
 		{06DB18DA-BCEE-4AA4-B38B-0367B7D52C5C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06DB18DA-BCEE-4AA4-B38B-0367B7D52C5C}.Release|x64.ActiveCfg = Release|x64
 		{06DB18DA-BCEE-4AA4-B38B-0367B7D52C5C}.Release|x64.Build.0 = Release|x64
-		{589BF24C-F2CE-44A4-9F1F-384BA19E3302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{589BF24C-F2CE-44A4-9F1F-384BA19E3302}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{589BF24C-F2CE-44A4-9F1F-384BA19E3302}.Debug|x64.ActiveCfg = Debug|x64
-		{589BF24C-F2CE-44A4-9F1F-384BA19E3302}.Debug|x64.Build.0 = Debug|x64
-		{589BF24C-F2CE-44A4-9F1F-384BA19E3302}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{589BF24C-F2CE-44A4-9F1F-384BA19E3302}.Release|Any CPU.Build.0 = Release|Any CPU
-		{589BF24C-F2CE-44A4-9F1F-384BA19E3302}.Release|x64.ActiveCfg = Release|Any CPU
-		{589BF24C-F2CE-44A4-9F1F-384BA19E3302}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

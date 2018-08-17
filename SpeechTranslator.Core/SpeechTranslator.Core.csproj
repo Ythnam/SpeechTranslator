@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\IStrategy.cs" />
+    <Compile Include="Model\LanguageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StrategyContext.cs" />
     <Compile Include="Strategy\SpeechStrategy.cs" />
