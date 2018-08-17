@@ -1,21 +1,30 @@
 ﻿using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Translation;
+using SpeechTranslator.Core.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpeechTranslator.Core
+namespace SpeechTranslator.Core.Strategy
 {
-    public static class SpeechManager
+    class SpeechStrategy : IStrategy
     {
-        private static string key = "96026169606d4ed49d1cec6bccc69dd8";
-        private static string server = "northeurope";
+        private readonly string key;
+        private readonly string azureServer;
 
-        public static async Task<string> RecognizeSpeechAsync(string _language)
+        private SpeechStrategy() { }
+
+        public SpeechStrategy(string _key, string _azureServer)
         {
-            var factory = SpeechFactory.FromSubscription(key, server);
+            this.key = _key;
+            this.azureServer = _azureServer;
+        }
+
+        public async Task<string> Recognize(string _language)
+        {
+            var factory = SpeechFactory.FromSubscription(this.key, this.azureServer);
 
             using (var recognizer = factory.CreateSpeechRecognizer(_language))
             {
@@ -37,12 +46,12 @@ namespace SpeechTranslator.Core
             }
         }
 
-        public static async Task<string> TranslateSpeechAsync(string _fromLanguage, List<string> _toLanguage)
+        public async Task<string> TranslateToText(string _fromLanguage, List<string> _toLanguage)
         {
             // Creates an instance of a speech factory with specified
             // subscription key and service region. Replace with your own subscription key
             // and service region (e.g., "westus").
-            var factory = SpeechFactory.FromSubscription(key, server);
+            var factory = SpeechFactory.FromSubscription(this.key, this.azureServer);
 
             using (TranslationRecognizer trecognizer = factory.CreateTranslationRecognizer(_fromLanguage, _toLanguage))
             {
@@ -66,6 +75,12 @@ namespace SpeechTranslator.Core
                     return "Translation error";
                 }
             }
+        }
+
+
+        public async void TranslateToSpeech(string _fromLanguage, List<string> _toLanguage)
+        {
+
         }
     }
 }
