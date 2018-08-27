@@ -8,3 +8,4 @@ C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTr
 C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\obj\x64\Debug\SpeechTranslator.Core.csproj.CopyComplete
 C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\obj\x64\Debug\SpeechTranslator.Core.dll
 C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\obj\x64\Debug\SpeechTranslator.Core.pdb
+C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\obj\x64\Debug\SpeechTranslator.Core.csprojResolveAssemblyReference.cache

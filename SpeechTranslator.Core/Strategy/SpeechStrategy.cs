@@ -48,7 +48,10 @@ namespace SpeechTranslator.Core.Strategy
                     {
                         textAndTranslations.Add(new LanguageModel(_fromLanguage, result.Text));
                         foreach (var element in result.Translations)
+                        {
                             textAndTranslations.Add(new LanguageModel(element.Key, element.Value));
+                            Console.WriteLine(element.Key);
+                        }
                     }
                 }
             }
