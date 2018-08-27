@@ -14,7 +14,10 @@
 
     <DataGrid ItemsSource="{Binding Translations}"
               HorizontalContentAlignment="Center"
-              CanUserAddRows="False">
+              CanUserAddRows="False"
+              CanUserResizeColumns="True"
+              CanUserResizeRows="True"
+              >
         <DataGrid.Style>
             <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">
                 <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayBrush10}" />

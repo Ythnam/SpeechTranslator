@@ -34,14 +34,8 @@ namespace SpeechTranslator.ViewModel
         {
             if (this.Translations.Any())
                 this.Translations.Clear();
-
-            foreach (LanguageModel translation in action)
-                Console.WriteLine(translation.Language + " : " + translation.Text);
-
-            //foreach (LanguageModel translation in action)
-            //    this.Translations.Add(translation);
+            
             Translations = action;
-            //RaisePropertyChanged();
         }
     }
 }

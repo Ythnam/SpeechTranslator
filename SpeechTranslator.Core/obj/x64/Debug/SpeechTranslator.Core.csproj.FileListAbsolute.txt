@@ -4,7 +4,6 @@ C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTr
 C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\bin\x64\Debug\SpeechTranslator.Core.pdb
 C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\bin\x64\Debug\Microsoft.CognitiveServices.Speech.csharp.dll
 C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\bin\x64\Debug\Microsoft.CognitiveServices.Speech.csharp.xml
-C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\obj\x64\Debug\SpeechTranslator.Core.csprojResolveAssemblyReference.cache
 C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\obj\x64\Debug\SpeechTranslator.Core.csproj.CoreCompileInputs.cache
 C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\obj\x64\Debug\SpeechTranslator.Core.csproj.CopyComplete
 C:\Users\phjacob\Documents\Visual Studio 2017\Projects\SpeechTranslator\SpeechTranslator.Core\obj\x64\Debug\SpeechTranslator.Core.dll

@@ -16,7 +16,8 @@ namespace SpeechTranslator.ViewModel
     {
         #region Properties
         enum TranslationMode { ToText=1, ToSpeech=2 };
-        private StrategyContext Context;
+        private  readonly StrategyContext Context;
+        private readonly List<string> outputLanguages;
 
         private string textFromSpeech;
         public string TextFromSpeech
@@ -50,6 +51,13 @@ namespace SpeechTranslator.ViewModel
         public MainViewModel()
         {
             this.Context = new StrategyContext();
+            this.outputLanguages = new List<string>();
+            var supportedLanguages = ConfigurationManager.GetSection(Configuration.SupportedLanguagesSection.SectionName) as Configuration.SupportedLanguagesSection;
+            if (supportedLanguages != null)
+            {
+                foreach (Configuration.LanguageElement langElement in supportedLanguages.Languages)
+                    this.outputLanguages.Add(langElement.Code);
+            }
         }
 
         private ICommand onStartEventCommand;
@@ -64,7 +72,12 @@ namespace SpeechTranslator.ViewModel
         private async Task OnStartEvent()
         {
             Context.Strategy = new SpeechStrategy(ConfigurationManager.AppSettings["KEY"], ConfigurationManager.AppSettings["AzureServer"]);
-            List<LanguageModel> translations = await Context.TranslateToText("fr-FR", new List<string>() { "en", "it", "de" });
+
+            
+
+            List<LanguageModel> translations = await Context.TranslateToText("fr-FR", this.outputLanguages);
+
+            //List<LanguageModel> translations = await Context.TranslateToText("fr-FR", new List<string>() { "en-GB", "it-IT", "de-DE" });
 
             MessengerInstance.Send<List<LanguageModel>>(translations, "Translations");
         }
