@@ -19,10 +19,10 @@ namespace SpeechTranslator.Core.Model
             this.Code = _code;
         }
 
-        public LanguageModel(string _language, string _text)
-        {
-            this.Language = _language;
-            this.Text = _text;
-        }
+        //public LanguageModel(string _language, string _text)
+        //{
+        //    this.Language = _language;
+        //    this.Text = _text;
+        //}
     }
 }
