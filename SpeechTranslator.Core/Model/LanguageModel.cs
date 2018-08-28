@@ -8,8 +8,16 @@ namespace SpeechTranslator.Core.Model
 {
     public class LanguageModel
     {
-        public string Language { get; set; }
+        public string Language { get; }
+        public string Code { get; }
         public string Text { get; set; }
+        //public TYPETODEFINE Audio { get; set}
+
+        public LanguageModel(string _language, string _code)
+        {
+            this.Language = _language;
+            this.Code = _code;
+        }
 
         public LanguageModel(string _language, string _text)
         {
