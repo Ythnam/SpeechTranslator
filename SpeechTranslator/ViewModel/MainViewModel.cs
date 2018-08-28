@@ -17,7 +17,7 @@ namespace SpeechTranslator.ViewModel
         #region Properties
         enum TranslationMode { ToText=1, ToSpeech=2 };
         private  readonly StrategyContext Context;
-        private readonly List<string> outputLanguages;
+        private readonly List<LanguageModel> outputLanguages;
 
         private string textFromSpeech;
         public string TextFromSpeech
@@ -51,12 +51,12 @@ namespace SpeechTranslator.ViewModel
         public MainViewModel()
         {
             this.Context = new StrategyContext();
-            this.outputLanguages = new List<string>();
+            this.outputLanguages = new List<LanguageModel>();
             var supportedLanguages = ConfigurationManager.GetSection(Configuration.SupportedLanguagesSection.SectionName) as Configuration.SupportedLanguagesSection;
             if (supportedLanguages != null)
             {
                 foreach (Configuration.LanguageElement langElement in supportedLanguages.Languages)
-                    this.outputLanguages.Add(langElement.Code);
+                    this.outputLanguages.Add(new LanguageModel(langElement.Language, langElement.Code));
             }
         }
 
@@ -75,7 +75,7 @@ namespace SpeechTranslator.ViewModel
 
             
 
-            List<LanguageModel> translations = await Context.TranslateToText("fr-FR", this.outputLanguages);
+            List<LanguageModel> translations = await Context.TranslateToText(new LanguageModel("France", "fr-FR"), this.outputLanguages);
 
             //List<LanguageModel> translations = await Context.TranslateToText("fr-FR", new List<string>() { "en-GB", "it-IT", "de-DE" });
 

@@ -13,7 +13,7 @@ namespace SpeechTranslator.Core
         private IStrategy strategy;
         public IStrategy Strategy { set { strategy = value; } }
 
-        public async Task<List<LanguageModel>> TranslateToText(string _fromLanguage, List<string> _toLanguages)
+        public async Task<List<LanguageModel>> TranslateToText(LanguageModel _fromLanguage, List<LanguageModel> _toLanguages)
         {
             return await strategy.TranslateToText(_fromLanguage, _toLanguages);
         }

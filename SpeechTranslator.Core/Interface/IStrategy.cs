@@ -9,7 +9,7 @@ namespace SpeechTranslator.Core.Interface
 {
     public interface IStrategy
     {
-        Task TranslateToText(LanguageModel _fromLanguage, List<LanguageModel> _toLanguages);
+        Task<List<LanguageModel>> TranslateToText(LanguageModel _fromLanguage, List<LanguageModel> _toLanguages);
         void TranslateToSpeech(LanguageModel _fromLanguage, List<LanguageModel> _toLanguages);
     }
 }

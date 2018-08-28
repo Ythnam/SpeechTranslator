@@ -23,41 +23,43 @@ namespace SpeechTranslator.Core.Strategy
             this.azureServer = _azureServer;
         }
 
-        public async Task<List<LanguageModel>> TranslateToText(string _fromLanguage, List<string> _toLanguages)
+        public async Task<List<LanguageModel>> TranslateToText(LanguageModel _fromLanguage, List<LanguageModel> _toLanguages)
         {
             // Creates an instance of a speech factory with specified
             // subscription key and service region. Replace with your own subscription key
             // and service region (e.g., "westus").
             var factory = SpeechFactory.FromSubscription(this.key, this.azureServer);
-            List<LanguageModel> textAndTranslations = new List<LanguageModel>();
+            List<LanguageModel> languages = new List<LanguageModel>();
 
-            using (TranslationRecognizer trecognizer = factory.CreateTranslationRecognizer(_fromLanguage, _toLanguages))
+            using (TranslationRecognizer trecognizer = factory.CreateTranslationRecognizer(_fromLanguage.Code, _toLanguages.Select(L => L.Code).ToList()))
             {
                 var result = await trecognizer.RecognizeAsync();
 
                 if (result.RecognitionStatus != RecognitionStatus.Recognized)
                 {
                     if (result.RecognitionStatus == RecognitionStatus.Canceled)
-                        textAndTranslations.Add(new LanguageModel("Error", "There was an error, reason:" + result.RecognitionFailureReason));
+                        languages.Add(new LanguageModel("Error", "Err") { Text = "There was an error, reason:" + result.RecognitionFailureReason });
                     else
-                        textAndTranslations.Add(new LanguageModel("Error", "No speech could be recognized.\n"));
+                        languages.Add(new LanguageModel("Error", "Err") { Text = "No speech could be recognized.\n" });
                 }
                 else
                 {
                     if (result.TranslationStatus == TranslationStatus.Success)
                     {
-                        textAndTranslations.Add(new LanguageModel(_fromLanguage, result.Text));
-                        foreach (var element in result.Translations)
-                        {
-                            textAndTranslations.Add(new LanguageModel(element.Key, element.Value));
-                            Console.WriteLine(element.Key);
-                        }
+                        languages = _toLanguages.Zip(result.Translations, (l, t) => new LanguageModel(l.Language, t.Key) { Text = t.Value }).ToList();
+                        foreach (LanguageModel l in languages)
+                            Console.WriteLine(l.Language + " - " + l.Code + " " + l.Text);
+                        //foreach (var element in result.Translations)
+                        //{
+                        //    languages.Add(new LanguageModel(_toLanguages.Select(l => l.Language).Where(l => l.), element.Key) { Text = element.Value });
+                        //    Console.WriteLine(element.Key);
+                        //}
                     }
                 }
             }
-            return textAndTranslations;
+            return languages;
         }
 
-        public void TranslateToSpeech(string _fromLanguage, List<string> _toLanguage) { }
+        public void TranslateToSpeech(LanguageModel _fromLanguage, List<LanguageModel> _toLanguage) { }
     }
 }
