@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpeechTranslator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="250" Width="600"
         
         BorderBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="3" 
@@ -16,9 +16,14 @@
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     
     <Window.Resources>
-        <DataTemplate DataType="{x:Type Vm:TranslationViewModel}">
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <!--<DataTemplate DataType="{x:Type Vm:TranslationViewModel}">
             <Views:TranslationView/>
-        </DataTemplate>
+        </DataTemplate>-->
     </Window.Resources>
     
 
@@ -35,6 +40,8 @@
 
         <ComboBox Grid.Column="0" Grid.Row="0"
                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Height="20"
+                 Width="200"
                  SnapsToDevicePixels="True"
                  OverridesDefaultStyle="True"
                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -42,12 +49,14 @@
                  ScrollViewer.CanContentScroll="True"
                  IsSynchronizedWithCurrentItem="True"
                  x:Name="ComboBoxImputLanguage"
-                 Margin="20,15,20,15"
                  ItemsSource="{Binding InputLanguages}"
                  SelectedItem="{Binding InputLanguage}"
                  DisplayMemberPath="Language"/>
         
         <ComboBox Grid.Column="1" Grid.Row="0"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Height="20"
+                  Width="200"
                   x:Name="ComboBoxOutputLanguage"
                   SnapsToDevicePixels="True"
                   OverridesDefaultStyle="True"
@@ -55,28 +64,93 @@
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.CanContentScroll="True"
                   IsSynchronizedWithCurrentItem="True"
-                  Margin="20,15,20,15"
                   ItemsSource="{Binding OutputLanguages}"
                   SelectedItem="{Binding OutputLanguage}"
                   DisplayMemberPath="Language">
 
         </ComboBox>
 
-        <Button Grid.Column="0"  Grid.Row="2"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Margin="50,0,0,0"
-                Height="30"
-                Width="100"
-                Content="Start"
-                Command="{Binding OnStartEventCommand}"/>
+        <StackPanel Grid.Column="0"  Grid.Row="1"
+                    Margin="5,0,10,0"
+                    Orientation="Vertical">
+            <TextBox Height="130"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Height="40" Width="40"
+                        Style="{DynamicResource MetroCircleButtonStyle}"
+                        Command="{Binding }">
+                    <Rectangle Width="15"
+                               Height="15"
+                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_sound_3}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+                <Button Height="40" Width="40"
+                        Style="{DynamicResource MetroCircleButtonStyle}"
+                        Command="{Binding }">
+                    <Rectangle Width="15"
+                               Height="15"
+                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_input_keyboard}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+                <Button Height="40" Width="40"
+                        Style="{DynamicResource MetroCircleButtonStyle}"
+                        Command="{Binding OnStartEventCommand}">
+                    <Rectangle Width="15"
+                               Height="15"
+                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_microphone}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+                <Button Height="40" Width="40"
+                        Style="{DynamicResource MetroCircleButtonStyle}"
+                        Command="{Binding }">
+                    <Rectangle Width="15"
+                               Height="15"
+                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_microphone_google}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+            </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="4"
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"  Grid.Row="1"
+                    Margin="10,0,5,0"
+                    Orientation="Vertical">
+            <Label Height="130"
+                   BorderBrush="AliceBlue"
+                   BorderThickness="1"
+                   Background="AliceBlue"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Height="40" Width="40"
+                        Style="{DynamicResource MetroCircleButtonStyle}"
+                        Command="{Binding }">
+                    <Rectangle Width="15"
+                               Height="15"
+                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Fill" Visual="{DynamicResource appbar_sound_3}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <!--<StackPanel Grid.Column="1" Grid.Row="4"
                     Orientation="Vertical">
 
             <Views:TranslationView Padding="0,25,0,0"
                                    Visibility="Visible"/>
-        </StackPanel>
+        </StackPanel>-->
 
        
     </Grid>
