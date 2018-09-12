@@ -51,29 +51,29 @@ namespace SpeechTranslator.ViewModel
             }
         }
 
-        private string textFromSpeech;
-        public string TextFromSpeech
+        private string inputText;
+        public string InputText
         {
-            get { return this.textFromSpeech; }
+            get { return this.inputText; }
             set
             {
-                if (this.textFromSpeech != value)
+                if (this.inputText != value)
                 {
-                    this.textFromSpeech = value;
+                    this.inputText = value;
                     RaisePropertyChanged();
                 }
             }
         }
 
-        private string textTranlatedFromSpeech;
-        public string TextTranlatedFromSpeech
+        private string outputText;
+        public string OutputText
         {
-            get { return this.textTranlatedFromSpeech; }
+            get { return this.outputText; }
             set
             {
-                if (this.textTranlatedFromSpeech != value)
+                if (this.outputText != value)
                 {
-                    this.textTranlatedFromSpeech = value;
+                    this.outputText = value;
                     RaisePropertyChanged();
                 }
             }
@@ -113,10 +113,17 @@ namespace SpeechTranslator.ViewModel
             
 
             List<LanguageModel> translations = await Context.TranslateToText(this.InputLanguage, outputLanguageSelected);
+                       
 
-            //List<LanguageModel> translations = await Context.TranslateToText("fr-FR", new List<string>() { "en-GB", "it-IT", "de-DE" });
+            foreach(LanguageModel lm in translations)
+            {
+                if ( OutputLanguage.Code.Contains(lm.Code))
+                    this.OutputText = lm.Text;
+                else this.OutputText = "Error : Output language selected";
+            }
 
-            MessengerInstance.Send<List<LanguageModel>>(translations, "Translations");
+
+            //MessengerInstance.Send<List<LanguageModel>>(translations, "Translations");
         }
     }
 }
