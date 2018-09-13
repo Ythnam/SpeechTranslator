@@ -10,18 +10,10 @@ using System.Threading.Tasks;
 
 namespace SpeechTranslator.Core.Strategy
 {
-    public class SpeechStrategy : IStrategy
+    public class SpeechStrategy : AzureCognitiveServices, IStrategy
     {
-        private readonly string key;
-        private readonly string azureServer;
-
-        private SpeechStrategy() { }
-
-        public SpeechStrategy(string _key, string _azureServer)
-        {
-            this.key = _key;
-            this.azureServer = _azureServer;
-        }
+       
+        public SpeechStrategy(string _key, string _azureServer) : base(_key, _azureServer) {}
 
         public async Task<List<LanguageModel>> TranslateToText(LanguageModel _fromLanguage, List<LanguageModel> _toLanguages)
         {
@@ -60,6 +52,6 @@ namespace SpeechTranslator.Core.Strategy
             return languages;
         }
 
-        public void TranslateToSpeech(LanguageModel _fromLanguage, List<LanguageModel> _toLanguage) { }
+        public void TranslateToSpeech(LanguageModel _fromLanguage, List<LanguageModel> _toLanguages) { }
     }
 }
